@@ -14,10 +14,10 @@ public class RoutingController {
 
     @GetMapping("/{origin}/{destination}")
     public ResponseEntity<?> getRoute(@PathVariable String origin, @PathVariable  String destination){
-        if(routingService.isValidCca3(origin)){
+        if(!routingService.isValidCca3(origin)){
             return ResponseEntity.badRequest().body(new ErrorResponse("Invalid origin country."));
         }
-        if(routingService.isValidCca3(destination)){
+        if(!routingService.isValidCca3(destination)){
             return ResponseEntity.badRequest().body(new ErrorResponse("Invalid destination country."));
         }
         return routingService.findRoute(origin, destination).map(strings -> ResponseEntity.ok().body(new RouteResponse(strings)))

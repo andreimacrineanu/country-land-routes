@@ -59,6 +59,6 @@ public class RoutingService {
     }
 
     public boolean isValidCca3(String cca3){
-        return cca3.length() != 3 || !adj.containsKey(cca3);
+        return cca3.length() == 3 && adj.containsKey(cca3);
     }
 }
